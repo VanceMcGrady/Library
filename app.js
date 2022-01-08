@@ -1,4 +1,4 @@
-const modal = document.querySelector(".modal");
+const modal = document.querySelector("#modal");
 const addBtn = document.querySelector(".add-btn");
 
 let myLibrary = [];
@@ -59,15 +59,11 @@ function hideModal(e) {
     modal.classList = "modal-hidden";
   }
 }
-function displayModal(e) {
+function displayModal() {
   modal.classList = "modal";
 }
 
 window.addEventListener("click", hideModal);
 addBtn.addEventListener("click", displayModal);
-
-console.log(modal.style.display);
-addBookToLibrary(book1);
-addBookToLibrary(book2);
 
 displayBooks(myLibrary);
