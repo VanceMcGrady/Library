@@ -55,3 +55,10 @@ header {
 .modal-hidden {
   display: none;
 }
+
+.have-read-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
