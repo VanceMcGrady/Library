@@ -1,5 +1,6 @@
 const modal = document.querySelector("#modal");
 const addBtn = document.querySelector(".add-btn");
+const textInputs = document.querySelectorAll(".text-input");
 
 let myLibrary = [];
 
@@ -63,7 +64,12 @@ function displayModal() {
   modal.classList = "modal";
 }
 
+function handleInput(e) {
+  console.log(e.target.value);
+}
+
 window.addEventListener("click", hideModal);
 addBtn.addEventListener("click", displayModal);
+textInputs.forEach((item) => item.addEventListener("input", handleInput));
 
 displayBooks(myLibrary);
