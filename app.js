@@ -1,5 +1,3 @@
-const libraryContainer = document.querySelector(".library-container");
-
 let myLibrary = [
   {
     title: "Infinite Jest",
@@ -24,4 +22,14 @@ function Book(title, author, numOfPages, haveRead) {
 
 function addBookToLibrary(book) {
   myLibrary.push(book);
+}
+
+function displayBooks(arr) {
+  const libraryContainer = document.querySelector(".library-container");
+
+  arr.forEach((book) => {
+    const newCard = document.createElement("div");
+    libraryContainer.appendChild(newCard);
+    newCard.innerHTML = "<h4> TESTING </h4>";
+  });
 }
