@@ -1,64 +1,31 @@
-body {
+header {
   display: flex;
   flex-direction: column;
-}
-
-header {
-  background-color: blanchedalmond;
-}
-
-.books-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 2%;
-  gap: 2%;
-
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  border: 10px solid black;
+  padding: 2%;
 }
+
+h1 {
+  font-size: 60px;
+  margin: 0%;
+}
+
 .book-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 300px;
-  width: 250px;
+  justify-content: center;
   border: 3px solid black;
+  width: 200px;
+  height: 250px;
   margin: 2%;
 }
 
-.modal {
-  display: inline;
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 50%; /* Could be more or less, depending on screen size */
+.checkbox-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 5px;
-}
-.modal-hidden {
-  display: none;
-}
-
-.have-read-container {
-  display: flex;
-  flex-direction: row;
   justify-content: center;
-  align-items: center;
 }

@@ -4,43 +4,23 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
     <link rel="stylesheet" href="./styles.css" />
     <script src="./app.js" defer></script>
-    <title>Library</title>
   </head>
   <body>
-
-    <header class="header">
-      <h1 class="title">Library</h1>
+    <header>
+      <h1>Library</h1>
+      <button class="add-book">New Book</button>
     </header>
-
-    <div class="modal-hidden" id="modal">
-      <div class="modal-content">
-      <h2>Add New Book To Library</h1>
-      <input class="text-input" type="text" name="title" id="title" placeholder="Title">
-      
-      <input class="text-input" type="text" name="author" id="author" placeholder="Author">
-     <input class="text-input" type="text" name="num-of-pages" id="num-of-pages" placeholder="Number of Pages">
-
-     <div class="have-read-container"> 
-       <h4>I Have Read This Title</h4>
-      <input type="checkbox" >
-      </div>
-      <button class="submit">submit</button>
-</div>
-
-    </div>
-  </div>
-
-    <div class="books-container">
-
-     
+    <div class="library-container">
       <div class="book-card">
-        <button class="add-btn">Add Book</button>
+            <h3>Title</h3>
+            <h3>Author</h3>
+            <h3>Number of Pages</h3>
+            <h4>I have Read This Book</h4>
+        </div>
       </div>
-
-      
-      </div>
-    </div>
-  </body>
 </html>
+
+   
