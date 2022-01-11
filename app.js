@@ -13,12 +13,14 @@ function addBookToLibrary(book) {
 
 function displayBooks(arr) {
   const libraryContainer = document.querySelector(".library-container");
+  libraryContainer.innerHTML = "";
+
   arr.forEach((book) => {
     const newCard = document.createElement("div");
     newCard.innerHTML = `<div class="book-card">
     <h3>${book.title}</h3>
     <h3>${book.author}</h3>
-    <h3>${book.numOfPages}pgs</h3>
+    <h3>${book.numOfPages} pgs</h3>
     <h4>${
       book.haveRead ? "I have read this book." : "I have NOT read this book."
     }</h4>
@@ -33,9 +35,14 @@ function handleSubmit() {
   const titleInput = document.querySelector("#title").value;
   const authorInput = document.querySelector("#author").value;
   const numOfPagesInput = document.querySelector("#pgs").value;
-  const haveRead = document.querySelector("#have-read").checked;
+  const haveRead = document.querySelector("#have-read");
 
-  const newBook = new Book(titleInput, authorInput, numOfPagesInput, haveRead);
+  const newBook = new Book(
+    titleInput,
+    authorInput,
+    numOfPagesInput,
+    haveRead.checked
+  );
 
   addBookToLibrary(newBook);
   displayBooks(myLibrary);
@@ -44,6 +51,7 @@ function handleSubmit() {
   });
 
   modal.style.display = "none";
+  haveRead.checked = false;
 }
 
 const addBtn = document.querySelector(".add-book");
