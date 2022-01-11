@@ -1,23 +1,4 @@
-let myLibrary = [
-  {
-    title: "Infinite Jest",
-    author: "David F. Wallace",
-    numOfPages: 3000,
-    haveRead: true,
-  },
-  {
-    title: "Lord of The Rings",
-    author: "J.R.R. Tolkien",
-    numOfPages: 5000,
-    haveRead: false,
-  },
-  {
-    title: "Harry Potter and The Chamber of Secrets",
-    author: "J.K. Rowling",
-    numOfPages: 500,
-    haveRead: true,
-  },
-];
+let myLibrary = [];
 
 function Book(title, author, numOfPages, haveRead) {
   this.title = title;
@@ -32,7 +13,6 @@ function addBookToLibrary(book) {
 
 function displayBooks(arr) {
   const libraryContainer = document.querySelector(".library-container");
-
   arr.forEach((book) => {
     const newCard = document.createElement("div");
     newCard.innerHTML = `<div class="book-card">
@@ -47,9 +27,30 @@ function displayBooks(arr) {
   });
 }
 
+function handleSubmit() {
+  const textInputs = document.querySelectorAll(".text-input");
+
+  const titleInput = document.querySelector("#title").value;
+  const authorInput = document.querySelector("#author").value;
+  const numOfPagesInput = document.querySelector("#pgs").value;
+  const haveRead = document.querySelector("#have-read").checked;
+
+  const newBook = new Book(titleInput, authorInput, numOfPagesInput, haveRead);
+
+  addBookToLibrary(newBook);
+  displayBooks(myLibrary);
+  textInputs.forEach((item) => {
+    item.value = "";
+  });
+
+  modal.style.display = "none";
+}
+
 const addBtn = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
 const closeBtn = document.getElementsByClassName("close")[0];
+
+const submitBtn = document.querySelector(".submit-btn");
 
 // New Book button makes modal pop up
 addBtn.addEventListener("click", () => {
@@ -66,5 +67,7 @@ window.addEventListener("click", (e) => {
 closeBtn.addEventListener("click", () => {
   modal.style.display = "none";
 });
+
+submitBtn.addEventListener("click", handleSubmit);
 
 displayBooks(myLibrary);
