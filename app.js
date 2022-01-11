@@ -47,4 +47,24 @@ function displayBooks(arr) {
   });
 }
 
+const addBtn = document.querySelector(".add-book");
+const modal = document.querySelector(".modal");
+const closeBtn = document.getElementsByClassName("close")[0];
+
+// New Book button makes modal pop up
+addBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+
+// closes modal if user clicks outside of content box
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
 displayBooks(myLibrary);
