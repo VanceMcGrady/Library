@@ -7,6 +7,11 @@ function Book(title, author, numOfPages, haveRead) {
   this.haveRead = haveRead;
 }
 
+Book.prototype.index = function () {
+  let id = myLibrary.indexOf(this);
+  return id;
+};
+
 function addBookToLibrary(book) {
   myLibrary.push(book);
 }
@@ -17,7 +22,7 @@ function displayBooks(arr) {
 
   arr.forEach((book) => {
     const newCard = document.createElement("div");
-    newCard.innerHTML = `<div class="book-card">
+    newCard.innerHTML = `<div class="book-card" data-index="${book.index()}">
     <h3>${book.title}</h3>
     <h3>${book.author}</h3>
     <h3>${book.numOfPages} pgs</h3>
@@ -26,6 +31,7 @@ function displayBooks(arr) {
     }</h4>
 </div>`;
     libraryContainer.appendChild(newCard);
+    console.log(book.dataset);
   });
 }
 
