@@ -17,7 +17,6 @@ function addBookToLibrary(book) {
 }
 
 function displayBooks(arr) {
-  const libraryContainer = document.querySelector(".library-container");
   libraryContainer.innerHTML = "";
 
   arr.forEach((book) => {
@@ -29,9 +28,9 @@ function displayBooks(arr) {
     <h4>${
       book.haveRead ? "I have read this book." : "I have NOT read this book."
     }</h4>
+    <button id="remove-btn">Remove</button>
 </div>`;
     libraryContainer.appendChild(newCard);
-    console.log(book.dataset);
   });
 }
 
@@ -59,12 +58,25 @@ function handleSubmit() {
   modal.style.display = "none";
   haveRead.checked = false;
 }
-
+const libraryContainer = document.querySelector(".library-container");
 const addBtn = document.querySelector(".add-book");
 const modal = document.querySelector(".modal");
 const closeBtn = document.getElementsByClassName("close")[0];
 
 const submitBtn = document.querySelector(".submit-btn");
+
+const removeBtn = document.querySelector("#remove-btn");
+
+// adding delete book button to book cards yet to be rendered (event bubbling)
+libraryContainer.addEventListener("click", function (e) {
+  const thisCard = e.target.parentElement;
+  const thisIndex = thisCard.dataset.index;
+
+  if (e.target.id === "remove-btn") {
+    myLibrary.splice(thisIndex, 1);
+    displayBooks(myLibrary);
+  }
+});
 
 // New Book button makes modal pop up
 addBtn.addEventListener("click", () => {
