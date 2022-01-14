@@ -7,9 +7,15 @@ function Book(title, author, numOfPages, haveRead) {
   this.haveRead = haveRead;
 }
 
+// generate unique id number for each new object
 Book.prototype.index = function () {
   let id = myLibrary.indexOf(this);
   return id;
+};
+
+//toggle read status on book card
+Book.prototype.toggleReadStatus = function () {
+  this.haveRead = !this.haveRead;
 };
 
 function addBookToLibrary(book) {
@@ -21,15 +27,23 @@ function displayBooks(arr) {
 
   arr.forEach((book) => {
     const newCard = document.createElement("div");
-    newCard.innerHTML = `<div class="book-card" data-index="${book.index()}">
+    newCard.innerHTML = `
+    
+    <div class="book-card" data-index="${book.index()}">
     <h3>${book.title}</h3>
     <h3>${book.author}</h3>
     <h3>${book.numOfPages} pgs</h3>
-    <h4>${
-      book.haveRead ? "I have read this book." : "I have NOT read this book."
-    }</h4>
+
+    <div class="have-read-container">
+      <h5>Book Completed</h5> 
+
+      <input type="checkbox" id="have-read-status" ${
+        book.haveRead ? "checked" : ""
+      } >
+    </div>
+    
     <button id="remove-btn">Remove</button>
-</div>`;
+  </div>`;
     libraryContainer.appendChild(newCard);
   });
 }
@@ -67,7 +81,7 @@ const submitBtn = document.querySelector(".submit-btn");
 
 const removeBtn = document.querySelector("#remove-btn");
 
-// adding delete book button to book cards yet to be rendered (event bubbling)
+// adding delete book button and toggle read-status to book cards yet to be rendered (event bubbling)
 libraryContainer.addEventListener("click", function (e) {
   const thisCard = e.target.parentElement;
   const thisIndex = thisCard.dataset.index;
@@ -75,6 +89,13 @@ libraryContainer.addEventListener("click", function (e) {
   if (e.target.id === "remove-btn") {
     myLibrary.splice(thisIndex, 1);
     displayBooks(myLibrary);
+  }
+  if ((e.target.id = "have-read-status")) {
+    const currentBookObject = myLibrary[thisCard.parentElement.dataset.index];
+
+    currentBookObject.toggleReadStatus();
+    console.log(currentBookObject);
+    console.log(e.target);
   }
 });
 
@@ -90,9 +111,13 @@ window.addEventListener("click", (e) => {
   }
 });
 
-closeBtn.addEventListener("click", () => {
-  modal.style.display = "none";
-});
+closeBtn.addEventListener(
+  "click",
+  () => {
+    modal.style.display = "none";
+  },
+  false
+);
 
 submitBtn.addEventListener("click", handleSubmit);
 

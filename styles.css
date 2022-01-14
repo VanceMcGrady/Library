@@ -88,3 +88,10 @@ h1 {
   text-decoration: none;
   cursor: pointer;
 }
+
+.have-read-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 20px;
+}
