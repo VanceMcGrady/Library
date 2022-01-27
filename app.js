@@ -1,4 +1,4 @@
-let libray = {
+let library = {
   libraryArr: [
     {
       title: "Infinite Jest",
@@ -13,8 +13,12 @@ let libray = {
       haveRead: false,
     },
   ],
+  modal: document.querySelector(".modal"),
   addBookModal: function () {
-    console.log("add book modal working");
+    this.modal.style.display = "block";
+  },
+  hideBookModal: function () {
+    this.modal.style.display = "none";
   },
 };
 
@@ -23,14 +27,14 @@ let libraryDisplay = (function () {
   (function () {
     let booksContainer = document.querySelector(".books-container");
 
-    libray.libraryArr.forEach((book) => {
+    library.libraryArr.forEach((book) => {
       let bookCard = document.createElement("div");
       bookCard.classList.add("book");
       booksContainer.appendChild(bookCard);
       bookCard.innerHTML = ` 
     <h3 class="title">${book.title}</h3>
     <h4 class="author">${book.author}</h4>
-    <h4 class="number-of-pages">${book.numOfPages}</h4>
+    <h4 class="number-of-pages">${book.numOfPages} pgs</h4>
     <h5 class="have-read">${book.haveRead}</h5>
 `;
     });
@@ -40,7 +44,23 @@ let libraryDisplay = (function () {
 let eventListeners = (function () {
   window.addEventListener("click", function (e) {
     if (e.target.classList == "add-btn") {
-      libray.addBookModal();
+      library.addBookModal();
+    }
+    if (e.target.classList == "modal" || e.target.classList == "close") {
+      library.hideBookModal();
     }
   });
 })();
+
+class Book {
+  constructor(title, author, numOfPages, haveRead) {
+    this.title = title;
+    this.author = author;
+    this.numOfPages = numOfPages;
+    this.haveRead = haveRead;
+  }
+
+  addToLibrary() {
+    library.libraryArr.push(this);
+  }
+}
