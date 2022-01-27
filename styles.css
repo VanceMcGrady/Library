@@ -17,6 +17,8 @@ header {
 }
 
 .book {
+  width: 200px;
+  height: 250px;
   padding: 20px;
   margin: 20px;
   display: flex;
