@@ -1,66 +1,69 @@
-let library = {
-  libraryArr: [
-    {
-      title: "Infinite Jest",
-      author: "David F. Wallace",
-      numOfPages: 3000,
-      haveRead: true,
-    },
-    {
-      title: "Count of Monte Cristo",
-      author: "Alexander Dumas",
-      numOfPages: 4500,
-      haveRead: false,
-    },
-  ],
-  modal: document.querySelector(".modal"),
-  addBookModal: function () {
-    this.modal.style.display = "block";
-  },
-  hideBookModal: function () {
-    this.modal.style.display = "none";
-  },
-};
+const booksContainer = document.querySelector(".books-container");
+const modal = document.querySelector(".modal");
 
-let libraryDisplay = (function () {
-  //IIFE displays all books in library.libraryArr
-  (function () {
-    let booksContainer = document.querySelector(".books-container");
+class Library {
+  constructor() {
+    this.books = [];
+  }
+  addToLibrary(book) {
+    this.books.push(book);
+  }
+  displayLibrary() {
+    this.books.forEach((book) => {
+      console.log(this.books);
 
-    library.libraryArr.forEach((book) => {
-      let bookCard = document.createElement("div");
-      bookCard.classList.add("book");
-      booksContainer.appendChild(bookCard);
-      bookCard.innerHTML = ` 
+      booksContainer.innerHTML += ` <div class="book">
     <h3 class="title">${book.title}</h3>
     <h4 class="author">${book.author}</h4>
-    <h4 class="number-of-pages">${book.numOfPages} pgs</h4>
+    <h4 class="number-of-pages">${book.numPages} pgs</h4>
     <h5 class="have-read">${book.haveRead}</h5>
-`;
+  </div>`;
     });
-  })();
-})();
+  }
 
-let eventListeners = (function () {
+  displayModal() {
+    modal.style.display = "block";
+  }
+
+  hideModal() {
+    modal.style.display = "none";
+  }
+}
+const library = new Library();
+
+class Book {
+  constructor(title, author, numPages, haveRead) {
+    this.title = title;
+    this.author = author;
+    this.numPages = numPages;
+    this.haveRead = haveRead;
+  }
+}
+
+(function () {
   window.addEventListener("click", function (e) {
     if (e.target.classList == "add-btn") {
-      library.addBookModal();
+      library.displayModal();
     }
-    if (e.target.classList == "modal" || e.target.classList == "close") {
-      library.hideBookModal();
+    if (e.target.classList == "close" || e.target.classList == "modal") {
+      library.hideModal();
+    }
+    if (e.target.classList == "submit-btn") {
+      const titleData = document.querySelector("#title");
+      const authorData = document.querySelector("#author");
+      const numPagesData = document.querySelector("#num-pgs-input");
+      const haveReadData = document.querySelector("#have-read-toggle");
+      let newBook = new Book(
+        titleData.value,
+        authorData.value,
+        numPagesData.value,
+        haveReadData.checked
+      );
+      library.addToLibrary(newBook);
+      library.hideModal();
+      library.displayLibrary();
     }
   });
 })();
 
-class Book {
-  constructor(title, author, numOfPages, haveRead) {
-    this.title = title;
-    this.author = author;
-    this.numOfPages = numOfPages;
-    this.haveRead = haveRead;
-  }
-
-  addToLibrary() {
-    library.libraryArr.push(this);
-  }
-}
+library.displayLibrary();
