@@ -15,11 +15,13 @@ class Library {
   displayLibrary() {
     booksContainer.innerHTML = "";
     this.books.forEach((book) => {
-      booksContainer.innerHTML += ` <div class="book">
+      booksContainer.innerHTML += ` <div class="book" data-index${book.id}>
+        
         <h3 class="title">${book.title}</h3>
         <h4 class="author">${book.author}</h4>
         <h4 class="number-of-pages">${book.numPages} pgs</h4>
         <h5 class="have-read">${book.haveRead}</h5>
+        <button class="delete-button"> Delete </div> 
       </div>`;
     });
   }
