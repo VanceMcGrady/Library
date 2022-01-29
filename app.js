@@ -1,5 +1,6 @@
 const booksContainer = document.querySelector(".books-container");
 const modal = document.querySelector(".modal");
+const modalContent = document.querySelectorAll(".modal-content");
 
 class Library {
   constructor() {
@@ -8,16 +9,18 @@ class Library {
   addToLibrary(book) {
     this.books.push(book);
   }
-  displayLibrary() {
-    this.books.forEach((book) => {
-      console.log(this.books);
 
+  removeFromLibrary(book) {}
+
+  displayLibrary() {
+    booksContainer.innerHTML = "";
+    this.books.forEach((book) => {
       booksContainer.innerHTML += ` <div class="book">
-    <h3 class="title">${book.title}</h3>
-    <h4 class="author">${book.author}</h4>
-    <h4 class="number-of-pages">${book.numPages} pgs</h4>
-    <h5 class="have-read">${book.haveRead}</h5>
-  </div>`;
+        <h3 class="title">${book.title}</h3>
+        <h4 class="author">${book.author}</h4>
+        <h4 class="number-of-pages">${book.numPages} pgs</h4>
+        <h5 class="have-read">${book.haveRead}</h5>
+      </div>`;
     });
   }
 
@@ -65,5 +68,3 @@ class Book {
     }
   });
 })();
-
-library.displayLibrary();
