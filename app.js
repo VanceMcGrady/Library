@@ -13,7 +13,7 @@ class Library {
   displayLibrary() {
     booksContainer.innerHTML = "";
     this.books.forEach((book) => {
-      booksContainer.innerHTML += ` <div class="book" data-index${book.id}>
+      booksContainer.innerHTML += ` <div class="book" data-index${book.index()}>
         
         <h3 class="title">${book.title}</h3>
         <h4 class="author">${book.author}</h4>
@@ -43,6 +43,10 @@ class Book {
     this.id = this.getIndex();
   }
   getIndex() {
+    let id = library.books.indexOf(this);
+    return id;
+  }
+  index() {
     let id = library.books.indexOf(this);
     return id;
   }
