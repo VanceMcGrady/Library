@@ -10,8 +10,6 @@ class Library {
     this.books.push(book);
   }
 
-  removeFromLibrary(book) {}
-
   displayLibrary() {
     booksContainer.innerHTML = "";
     this.books.forEach((book) => {
@@ -42,6 +40,11 @@ class Book {
     this.author = author;
     this.numPages = numPages;
     this.haveRead = haveRead;
+    this.id = this.getIndex();
+  }
+  getIndex() {
+    let id = library.books.indexOf(this);
+    return id;
   }
 }
 
@@ -68,5 +71,8 @@ class Book {
       library.hideModal();
       library.displayLibrary();
     }
+    if (e.target.classList == "delete-button") {
+    }
+    console.log(e.target.classList);
   });
 })();
