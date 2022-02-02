@@ -18,7 +18,10 @@ class Library {
         <h3 class="title">${book.title}</h3>
         <h4 class="author">${book.author}</h4>
         <h4 class="number-of-pages">${book.numPages} pgs</h4>
-        <h5 class="have-read">${book.haveRead}</h5>
+        <div class="checkbox-container"> 
+         <h5 class="have-read">${book.haveRead}</h5>
+         <input type="checkbox">
+        </div> 
         <button class="delete-button"> Delete </div> 
       </div>`;
     });
@@ -45,6 +48,11 @@ class Book {
   index() {
     let id = library.books.indexOf(this);
     return id;
+  }
+
+  toggleReadStatus() {
+    let thisBook = library.books[library.books.indexOf(this)];
+    thisBook.haveRead = !thisBook.haveRead;
   }
 }
 
@@ -78,3 +86,5 @@ class Book {
     }
   });
 })();
+
+console.log(library.books);
