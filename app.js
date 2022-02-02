@@ -20,7 +20,9 @@ class Library {
         <h4 class="number-of-pages">${book.numPages} pgs</h4>
         <div class="checkbox-container"> 
          <h5 class="have-read">${book.haveRead}</h5>
-         <input type="checkbox">
+         <input type="checkbox" id="have-read-toggle-on-card" checked=${
+           book.haveRead
+         }>
         </div> 
         <button class="delete-button"> Delete </div> 
       </div>`;
@@ -83,6 +85,15 @@ class Book {
       const currentCardIndex = e.target.parentElement.dataset.index;
       library.books.splice(currentCardIndex, 1);
       library.displayLibrary();
+    }
+    if (e.target.id === "have-read-toggle-on-card") {
+      let ourCurrentBookObject =
+        library.books[e.target.parentElement.parentElement.dataset.index];
+      ourCurrentBookObject.toggleReadStatus();
+      let ourCurrentBookCheckbox = e.target;
+      ourCurrentBookCheckbox.checked = ourCurrentBookObject.haveRead;
+      library.displayLibrary();
+      console.log(ourCurrentBookObject);
     }
   });
 })();
